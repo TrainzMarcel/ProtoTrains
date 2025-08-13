@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu8mmmnaunmxq"]
+
+[ext_resource type="Script" uid="uid://d4f07wsy6k5cs" path="res://interact_system/camera/interact_camera_fp.gd" id="1_l7u2h"]
+[ext_resource type="Texture2D" uid="uid://c2pir20e52jq1" path="res://interact_system/player/cursor.png" id="2_0urun"]
+
+[node name="InteractCameraFP" type="Camera3D" node_paths=PackedStringArray("interact_raycast", "interact_text")]
+current = true
+fov = 90.0
+script = ExtResource("1_l7u2h")
+interact_raycast = NodePath("RayCast3D")
+interact_text = NodePath("RichTextLabel")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.402995)
+target_position = Vector3(0, -1.5, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -139.0
+offset_right = 253.0
+offset_bottom = -70.0
+grow_vertical = 0
+scale = Vector2(1.66626, 1.66626)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="Sprite2D" parent="Control"]
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("2_0urun")

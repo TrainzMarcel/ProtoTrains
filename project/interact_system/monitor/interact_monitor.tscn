@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3lm1rxba7w6g"]
+
+[ext_resource type="Script" path="res://scenes/interact_system/monitor/interact_monitor.gd" id="1_0n7d7"]
+
+[node name="InteractMonitor" type="Area3D"]
+script = ExtResource("1_0n7d7")

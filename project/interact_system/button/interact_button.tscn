@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drrnr1whab1w5"]
+
+[ext_resource type="Script" path="res://scenes/interact_system/button/interact_button.gd" id="1_rs30d"]
+
+[node name="InteractButton" type="Area3D"]
+script = ExtResource("1_rs30d")

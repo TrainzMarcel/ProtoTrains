@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm2v2k3f2qrnd"]
+
+[ext_resource type="PackedScene" uid="uid://bu8mmmnaunmxq" path="res://scenes/interact_system/camera/interact_camera_fp.tscn" id="1_03ite"]
+[ext_resource type="Script" path="res://scenes/interact_system/seat/interact_seat.gd" id="1_pk4nr"]
+[ext_resource type="PackedScene" uid="uid://ckqd18n0cukxj" path="res://scenes/interact_system/camera/interact_camera_tp.tscn" id="2_bdfuu"]
+
+[node name="InteractSeat" type="Area3D"]
+script = ExtResource("1_pk4nr")
+
+[node name="InteractCameraFP" parent="." node_paths=PackedStringArray("assigned_interact", "tp_cam") instance=ExtResource("1_03ite")]
+assigned_interact = NodePath("..")
+tp_cam = NodePath("../InteractCameraTP")
+
+[node name="InteractCameraTP" parent="." instance=ExtResource("2_bdfuu")]

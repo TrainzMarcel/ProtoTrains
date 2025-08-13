@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2ehiocjea0d7"]
+
+[ext_resource type="Script" uid="uid://cgvjtl5ik2tqx" path="res://interact_system/player/interact_player.gd" id="1_2jkq6"]
+[ext_resource type="Texture2D" uid="uid://bb22vt1h771vo" path="res://interact_system/player/face.png" id="1_ujtuy"]
+[ext_resource type="PackedScene" uid="uid://bu8mmmnaunmxq" path="res://interact_system/camera/interact_camera_fp.tscn" id="2_6tb2c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrf00"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ql7ln"]
+radius = 0.3
+height = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clpno"]
+transparency = 1
+albedo_texture = ExtResource("1_ujtuy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1obql"]
+material = SubResource("StandardMaterial3D_clpno")
+size = Vector2(0.75, 0.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23bpa"]
+transparency = 1
+albedo_color = Color(0.168627, 0.517647, 1, 0.219608)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8pwdp"]
+material = SubResource("StandardMaterial3D_23bpa")
+radius = 0.3
+height = 0.85
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sbi7"]
+albedo_color = Color(0.168627, 0.517647, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p03sy"]
+material = SubResource("StandardMaterial3D_0sbi7")
+radius = 0.3
+height = 0.85
+radial_segments = 32
+
+[node name="InteractPlayer" type="RigidBody3D" node_paths=PackedStringArray("leg_raycast", "fp_cam", "collider")]
+mass = 70.0
+physics_material_override = SubResource("PhysicsMaterial_rrf00")
+can_sleep = false
+lock_rotation = true
+continuous_cd = true
+script = ExtResource("1_2jkq6")
+leg_raycast = NodePath("RayCast3D")
+fp_cam = NodePath("InteractCameraFP")
+collider = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.275, 0)
+shape = SubResource("CapsuleShape3D_ql7ln")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="InteractCameraFP" parent="." instance=ExtResource("2_6tb2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.666, 0)
+script = null
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="InteractCameraFP"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.47841e-08, -0.025, -0.397884)
+mesh = SubResource("QuadMesh_1obql")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.952111, 0, 0, 0, 0.952111, 0, 0, 0, 0.952111, 0, 1.275, 0)
+mesh = SubResource("CapsuleMesh_8pwdp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.275, 0)
+mesh = SubResource("CapsuleMesh_p03sy")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckqd18n0cukxj"]
+
+[ext_resource type="Script" path="res://scenes/interact_system/camera/interact_camera_tp.gd" id="1_3kp4v"]
+
+[node name="InteractCameraTP" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.416, 0)
+script = ExtResource("1_3kp4v")
+
+[node name="CameraLeveler" type="Node3D" parent="."]
+
+[node name="SeatCamera3D2" type="Camera3D" parent="CameraLeveler"]
+fov = 90.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+top_level = true
+collision_mask = 0
+spring_length = 2.0
+
+[node name="LerpTo" type="Node3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+top_level = true
